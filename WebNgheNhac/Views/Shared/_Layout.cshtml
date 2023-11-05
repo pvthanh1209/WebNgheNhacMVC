@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Zing MP3</title>
+    <link href="~/Assets/css/Musicstyle.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body onload="Load()">
+    <div class="wrapper">
+        <div class="lefter">
+            <div class="webicon">
+                <center>
+                    <img src="~/Assets/images/iconphone.png" />
+                </center>
+            </div>
+            <div class="searchform">
+                @using (Html.BeginForm("Timkiem", "Nhac"))
+                {
+                    <input onfocus="if (this.value == 'Tìm kiếm tại đây...') { this.value = ''; }" onblur="if (this.value == '') { this.value = ''; }" type="text" name="keyword" value="Tìm kiếm tại đây..." />
+                    <button type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                }
+            </div>
+            <ul id="menucuatui" class="nav nav-stacked">
+                <li><a href="\"><span class="glyphicon glyphicon-home"></span> Trang Chủ</a></li>
+                <li><a href="@Url.Action("Amnhac","Nhac")"><span class="glyphicon glyphicon-music"></span> Âm Nhạc</a></li>
+            </ul>
+            @if (@Session["username"] != null && (string)@Session["username"] != "")
+            {
+                using (Html.BeginForm("Dangxuat", "Dangnhap", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="btndkdn">
+                        <p><a class="btndk" title="Trang cá nhân">@Session["username"]</a></p><br />
+                        <p><a href="@Url.Action("Dangxuat","Dangnhap")" class="btndx">Thoát <span class="glyphicon glyphicon-log-out"></span></a></p>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="btndkdn">
+                    <p><a href="@Url.Action("Dangky","Dangnhap")" class="btndk">Đăng Ký</a></p><br />
+                    <p><a href="@Url.Action("Index","Dangnhap")" class="btndn">Đăng Nhập</a></p>
+                </div>
+            }
+            <p id="cpr" class="text-center">
+                @{ var year = DateTime.Now.Year; }
+                &copy; @year TPV
+            </p>
+        </div>
+
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Assets/js/jquery-1.11.3.min.js"></script>
+<script src="~/Assets/js/jquery-ui-1.8.21.custom.min.js"></script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<script src="~/Assets/js/webnghenhac.js"></script>
+@RenderSection("scripts", required: false)

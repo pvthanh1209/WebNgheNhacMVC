@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Quản trị viên</title>
+    <link href="~/Assets/css/Adminstyle.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="lefter">
+            <div class="webicon">
+                <center><h4> Admin</h4></center>
+            </div>
+
+            <ul id="menucuatui" class="nav nav-stacked">
+                <li><a href="@Url.Action("Index","QLAlbum")"><span class="glyphicon glyphicon-cog"></span> Album</a></li>
+                <li><a href="@Url.Action("Index","QLBaihat")"><span class="glyphicon glyphicon-cog"></span> Bài Hát</a></li>
+                <li><a href="@Url.Action("Index","QLCasi")"><span class="glyphicon glyphicon-cog"></span> Ca Sĩ</a></li>
+                @if (@Session["username"] != null && (string)@Session["username"] != "" && (string)@Session["username"] == "admin")
+                {
+                    <li><a href="@Url.Action("Index","QLUsers")"><span class="glyphicon glyphicon-cog"></span> User</a></li>
+                }
+                <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-home"></span> Trang web</a></li>
+            </ul>
+            @if (@Session["username"] != null && (string)@Session["username"] != "")
+            {
+                using (Html.BeginForm("Dangxuat", "Dangnhap", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="btndkdn">
+                        <p><a href="javascript:void(0)" class="btndk">@Session["username"]</a></p><br />
+                        <p><a href="@Url.Action("Dangxuat","Dangnhap")" class="btndx">Thoát <span class="glyphicon glyphicon-log-out"></span></a></p>
+                    </div>
+                }
+            }
+            <p id="cpr">
+                @{ var year = DateTime.Now.Year; }
+                &copy; @year PBT &amp; Friends, Inc.
+            </p>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Assets/js/jquery-1.11.3.min.js"></script>
+<script src="~/Assets/js/jquery-ui-1.8.21.custom.min.js"></script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)

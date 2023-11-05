@@ -1,0 +1,47 @@
+﻿@model WebNgheNhac.Models.USER
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Bạn có chắc chắn muốn xóa người dùng này không ?</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Username
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.USERNAME)
+            </dd>
+
+            <dt>
+                Họ tên
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HOTEN)
+            </dd>
+
+            <dt>
+                Quyền
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.QUYEN)
+            </dd>
+        </dl>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
+            </div>
+        }
+    </div>
+
+</div>
+

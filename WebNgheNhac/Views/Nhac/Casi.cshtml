@@ -1,0 +1,61 @@
+﻿@model WebNgheNhac.Models.CasiModel
+@{
+    ViewBag.Title = "Ca sĩ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var image = (!string.IsNullOrEmpty(Model.Anh_CS) ? Model.Anh_CS : "/Assets/images/iconphone.png");
+}
+
+<div class="trangcasi">
+    <img src="@image" alt="avatar" />
+    <div class="thongtincs">
+        <h3>@Model.Ten_CS</h3>
+        <p>Quốc gia: <b>@Model.Ten_QG</b></p>
+    </div>
+    <div class="tieusucs">
+        <p>@Model.TieuSu</p>
+    </div>
+    <div id="menucasi">
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#Album">Album</a></li>
+            <li><a data-toggle="pill" href="#Baihat">Bài Hát</a></li>
+            <li><a data-toggle="pill" href="#Tieusu">Tiểu Sử</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="Album" class="tab-pane fade in active">
+            @if (Model.ListAlbum != null && Model.ListAlbum.Count > 0)
+            {
+                foreach (var item in Model.ListAlbum)
+                {
+                    <div class="item-noibat">
+                        <div class="item-noibat-imgs">
+                            <a href="/Nhac/AlbumNhac/@item.Album.MA_AB"><img src="@item.Album.ANH_AB" alt="album nhạc" /></a>
+                        </div>
+                        <p><a href="/Nhac/AlbumNhac/@item.Album.MA_AB" id="tenplaylist">@item.Album.TEN_AB</a></p>
+                        <p><a href="/Nhac/Casi/@item.Album.MA_CS" id="tenuser">@item.Ten_Cs</a></p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="Baihat" class="tab-pane fade">
+            @if (Model.ListBaiHat != null && Model.ListBaiHat.Count > 0)
+            {
+                foreach (var item in Model.ListBaiHat)
+                {
+                    var imageBaiHat = (!string.IsNullOrEmpty(item.BaiHat.AnhBaiHat) ? item.BaiHat.AnhBaiHat : "/Assets/images/iconphone.png");
+                    <div class="item-noibat">
+                        <div class="item-noibat-imgs">
+                            <a href="/Nhac/Nghenhac/@item.BaiHat.MA_BH"><img src="@imageBaiHat" alt="cakhucnoibat" /></a>
+                        </div>
+                        <p><a href="/Nhac/Nghenhac/@item.BaiHat.MA_BH" id="tenplaylist">@item.BaiHat.TEN_BH</a></p>
+                        <p><a href="/Nhac/Casi/@item.BaiHat.MA_CS" id="tenuser">@item.Ten_Cs</a></p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="Tieusu" class="tab-pane fade">
+            <p>@Model.TieuSu</p>
+        </div>
+    </div>
+</div>
+

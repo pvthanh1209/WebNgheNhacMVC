@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebNgheNhac.Models.ModelsBaiHat>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">QUẢN LÝ BÀI HÁT</h2>
+<div class="container noidung">
+    @using (Html.BeginForm("Index", "QLBaihat"))
+    {
+        <p>
+            <label>Lọc theo tên bài hát:</label> @Html.TextBox("tukhoa")
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-filter"></span></button>
+            <a href="@Url.Action("Create","QLBaihat")" class="cre-btn"><span class="glyphicon glyphicon-plus"></span>Thêm Bài Hát</a>
+        </p>
+    }
+    <table class="tablebaihat">
+        <tr>
+            <th>Tên Bài Hát</th>
+            <th>Ảnh bìa</th>
+            <th>Ca Sĩ</th>
+            <th>Link</th>
+            <th>Lượt Nghe</th>
+            <th>Lượt Like</th>
+            <th>Người Upload</th>
+            <th>Thể Loại</th>
+            <th>Album</th>
+            <th>Tùy chọn</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="tenbaihat">@Html.DisplayFor(mitem => item.TEN_BH)</td>
+                <td class="anhbia">
+                    @if (!string.IsNullOrEmpty(item.AnhBaiHat))
+                    {
+                        <img src="@item.AnhBaiHat" alt="Ảnh bìa" width="50" height="50" />
+                    }                  
+                </td>
+
+                <td class="casi">@Html.DisplayFor(mitem => item.TEN_CS)</td>
+
+                <td class="link">@Html.DisplayFor(mitem => item.LINK)</td>
+
+                <td class="luotnghe">@Html.DisplayFor(mitem => item.LUOTNGHE)</td>
+
+                <td class="luotlike">@Html.DisplayFor(mitem => item.LUOTLIKE)</td>
+
+                <td class="user">@Html.DisplayFor(mitem => item.USERNAME)</td>
+
+                <td class="theloai">@Html.DisplayFor(mitem => item.TEN_TL)</td>
+
+                <td class="album">@Html.DisplayFor(mitem => item.TEN_AB)</td>
+                <td class="tuychon">
+                    <a href="@Url.Action("Detail", new { id = item.MA_BH})" class="opt-btn"><span class="glyphicon glyphicon-zoom-in"></span></a> |
+                    <a href="@Url.Action("Edit", new { id = item.MA_BH})" class="opt-btn"><span class="glyphicon glyphicon-wrench"></span></a> |
+                    <a href="@Url.Action("Delete", new { id = item.MA_BH})" class="opt-btn"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

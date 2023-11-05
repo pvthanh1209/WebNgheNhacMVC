@@ -1,0 +1,83 @@
+﻿@model WebNgheNhac.Models.BAIHAT
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="action">Chi Tiết Bài Hát</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+
+            <dt>
+                Tên Bài Hát
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TEN_BH)
+            </dd>
+            <dt>
+                Ảnh bìa
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AnhBaiHat)
+            </dd>
+            <dt>
+                Tên Ca Sĩ
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CASI.TEN_CS)
+            </dd>
+
+            <dt>
+                Link
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LINK)
+            </dd>
+
+            <dt>
+                Lyric
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LYRIC)
+            </dd>
+
+            <dt>
+                Lượt Nghe
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LUOTNGHE)
+            </dd>
+
+            <dt>
+                Lượt Like
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LUOTLIKE)
+            </dd>
+
+            <dt>
+                Người UpLoad
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.USER.USERNAME)
+            </dd>
+
+            <dt>
+                Thể Loại
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.THELOAI.TEN_TL)
+            </dd>
+
+            <dt>
+                Album
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MA_AB)
+            </dd>
+        </dl>
+        <hr />
+    </div>
+    <p><a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <a href="@Url.Action("Edit", new { id = Model.MA_BH})" class="opt-btn"><span class="glyphicon glyphicon-wrench"></span> Chỉnh sửa</a></p>
+</div>
+

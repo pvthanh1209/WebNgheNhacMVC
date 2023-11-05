@@ -1,0 +1,51 @@
+﻿@model WebNgheNhac.Models.ALBUM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="action">Chỉnh Sửa Album</h2>
+<div class="container noidung">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MA_AB)
+            @Html.HiddenFor(model => model.ANH_AB)
+            @Html.HiddenFor(model => model.LUOTNGHE)
+            @Html.HiddenFor(model => model.NGAYPHATHANH)
+            @Html.HiddenFor(model => model.MA_CS)
+            <div class="form-group">
+                @Html.LabelFor(model => model.TEN_AB, "Tên album", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TEN_AB, new { htmlAttributes = new { @class = "text-box" } })
+                    @Html.ValidationMessageFor(model => model.TEN_AB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.THONGTIN, "Thông tin", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.THONGTIN, htmlAttributes: new { @class = "thongtin-area" })
+                    @Html.ValidationMessageFor(model => model.THONGTIN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MA_TL, "Thể loại", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MA_TL", null, htmlAttributes: new { @class = "drop" })
+                    @Html.ValidationMessageFor(model => model.MA_TL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a>
+</div>
+

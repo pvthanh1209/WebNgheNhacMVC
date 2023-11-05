@@ -1,0 +1,68 @@
+﻿@model WebNgheNhac.Models.BAIHAT
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="action">Chỉnh Sửa Bài Hát</h2>
+<div class="container noidung">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @*Làm ẩn các thuộc tính qtrong*@
+            @Html.HiddenFor(model => model.MA_BH)
+            @Html.HiddenFor(model => model.LUOTLIKE)
+            @Html.HiddenFor(model => model.LUOTNGHE)
+            @Html.HiddenFor(model => model.LINK)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TEN_BH, "Tên Bài Hát", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TEN_BH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TEN_BH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MA_CS, "Ca Sĩ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Ma_CS", null, htmlAttributes: new { @class = "drop" })
+                    @Html.ValidationMessageFor(model => model.MA_CS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LYRIC, "Lyric", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.LYRIC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LYRIC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MA_TL, "Thể loại", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MA_TL", null, htmlAttributes: new { @class = "drop" })
+                    @Html.ValidationMessageFor(model => model.MA_TL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MA_AB, "Album", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MA_AB", null, htmlAttributes: new { @class = "drop" })
+                    @Html.ValidationMessageFor(model => model.MA_AB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" onclick="alert('Lưu Bài Hát Thành Công')" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a>
+</div>

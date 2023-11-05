@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Kết quả tìm kiếm cho từ khóa "@ViewBag.keyword"</h2>
+    @Html.Raw(ViewBag.result)
+</div>
+

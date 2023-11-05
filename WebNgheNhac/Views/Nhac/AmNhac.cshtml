@@ -1,0 +1,64 @@
+﻿@model WebNgheNhac.Models.AmNhac
+@{
+    ViewBag.Title = "Âm Nhạc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="menuamnhac">
+        <h2>Âm Nhạc</h2>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#Album">Album</a></li>
+            <li><a data-toggle="pill" href="#Baihat">Bài Hát</a></li>
+            <li><a data-toggle="pill" href="#Casi">Ca Sĩ</a></li>
+        </ul>
+    </div>
+    <div class="tab-content" id="amnhaccontent">
+        <div id="Album" class="tab-pane fade in active">
+            @if (Model.ListAlbum != null && Model.ListAlbum.Count > 0)
+            {
+                foreach (var item in Model.ListAlbum)
+                {
+                    <div class="item-noibat">
+                        <div class="item-noibat-imgs">
+                            <a href="/Nhac/AlbumNhac/@item.Album.MA_AB"><img src="@item.Album.ANH_AB" alt="album nhạc" /></a>
+                        </div>
+                        <p><a href="/Nhac/AlbumNhac/@item.Album.MA_AB" id="tenplaylist">@item.Album.TEN_AB</a></p>
+                        <p><a href="/Nhac/Casi/@item.Album.MA_CS" id="tenuser">@item.Ten_Cs</a></p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="Baihat" class="tab-pane fade">
+            @if (Model.ListBaiHat != null && Model.ListBaiHat.Count > 0)
+            {
+                foreach (var item in Model.ListBaiHat)
+                {
+                    var image = (!string.IsNullOrEmpty(item.BaiHat.AnhBaiHat) ? item.BaiHat.AnhBaiHat : "/Assets/images/iconphone.png");
+                    <div class="item-noibat">
+                        <div class="item-noibat-imgs">
+                            <a href="/Nhac/Nghenhac/@item.BaiHat.MA_BH"><img src="@image" alt="cakhucnoibat" /></a>
+                        </div>
+                        <p><a href="/Nhac/Nghenhac/@item.BaiHat.MA_BH" id="tenplaylist">@item.BaiHat.TEN_BH</a></p>
+                        <p><a href="/Nhac/Casi/@item.BaiHat.MA_CS" id="tenuser">@item.Ten_Cs</a></p>
+                    </div>
+                }
+            }
+        </div>
+        <div id="Casi" class="tab-pane fade">
+            @if (Model.ListCasi != null && Model.ListCasi.Count > 0)
+            {
+                foreach (var item in Model.ListCasi)
+                {
+                    <div class="item-noibat">
+                        <div class="item-noibat-imgs">
+                            <a href="/Nhac/Casi/@item.MA_CS"><img src="@item.ANH_CS" alt="ảnh ca sĩ" /></a>
+                        </div>
+                        <p><a href="/Nhac/Casi/@item.MA_CS" id="tenplaylist">@item.TEN_CS</a></p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

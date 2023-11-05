@@ -1,0 +1,78 @@
+﻿@model WebNgheNhac.Models.ALBUM
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Bạn có chắc chắn muốn xóa album này không ?</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Tên album
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TEN_AB)
+            </dd>
+
+            <dt>
+                Ảnh bìa
+            </dt>
+
+            <dd>
+                <img src="@ViewBag.anh" alt="anh" class="anh-chitiet" />
+            </dd>
+
+            <dt>
+                Ngày phát hành
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYPHATHANH)
+            </dd>
+
+            <dt>
+                Lượt nghe
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUOTNGHE)
+            </dd>
+
+            <dt>
+                Thông tin
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THONGTIN)
+            </dd>
+
+            <dt>
+                Thể loại
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THELOAI.TEN_TL)
+            </dd>
+
+            <dt>
+                Ca sĩ
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CASI.TEN_CS)
+            </dd>
+        </dl>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
+            </div>
+        }
+    </div>
+
+</div>

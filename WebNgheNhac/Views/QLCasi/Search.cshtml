@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Quản lí ca sĩ</h2>
+<div class="container noidung">
+    @using (Html.BeginForm("Search", "QLCasi", FormMethod.Get))
+    {
+        <p>
+
+            <label>Lọc theo tên Ca sĩ:</label>
+            <input type="text" name="keyword" />
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-filter"></span></button>
+            <a href="@Url.Action("Create","QLCasi")" class="cre-btn"><span class="glyphicon glyphicon-plus"></span>Thêm Ca Sĩ</a>
+        </p>
+    }
+    <table class="tableab">
+        <tr>
+            <th>Tên Ca Sĩ</th>
+            <th>Ảnh Ca Sĩ</th>
+            <th>Thông Tin</th>
+            <th>Quốc Gia</th>
+            <th>Tùy Chọn</th>
+        </tr>
+
+        @Html.Raw(ViewBag.Manager)
+    </table>
+</div>
+

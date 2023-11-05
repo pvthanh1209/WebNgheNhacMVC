@@ -1,0 +1,64 @@
+﻿body {padding: 0; margin: 0}
+.wrapper {width: 1349px; min-height: 500px; margin: 0 auto}
+/*layoutAdmin*/
+.lefter {float: left; width: 200px; min-height: 703px; background: black; position: fixed; left: 0;z-index: 999}
+.content { float: right; width: 1158px; min-height: 703px}
+.webicon { color: white; padding: 10px 0}
+#menucuatui li a { color: white; font-size: 17px}
+#menucuatui li a:hover { background: #e10808; transition: all 0.35s}
+.btndkdn { width: 100%; text-align: center; margin-top: 90px; font-size: 16px}
+.btndkdn a { color: white}
+.btndk { border: 2px solid white; padding: 8px 15px}
+.btndk:hover { background: white; color: black; transition: all 0.35s; text-decoration: none}
+.btndn { padding: 8px 12px}
+.btndn:hover { background: white; color: black; transition: all 0.35s; text-decoration: none}
+.btndkdn a.btndx { color: gray}
+a.btndx:hover { text-decoration: none; color: white}
+#cpr { color: gray; font-size: 13px; margin-left: 10px; position: absolute; bottom: 45px}
+/*QLalbum*/
+h2.action { color: white; background: #c80505; padding: 10px 15px; margin: 0; box-shadow: 0 5px 0 rgba(0,0,0,0.2); position: fixed; width: 100%; z-index: 99}
+.noidung { margin-top: 70px}
+.tableab { margin-top: 15px}
+.tableab td,.tableab th { text-align: center; border-bottom: 1px solid gray; padding: 5px 3px}
+.tenab { width: 14%}
+.nph { width: 12%}
+.lnab { width: 9%}
+.tl { width: 7%}
+.tencasi { width: 12%}
+.tuychon { width: 13%}
+.drop { width: 350px; height: 30px}
+.cre-btn { color: white; padding: 6px 10px; border-radius: 4px; background: #e10808}
+.cre-btn:hover { text-decoration: none; background: #c80505; color: white}
+.opt-btn { color: black; font-size: 16px; font-weight: bold; padding: 4px}
+.opt-btn:hover { background: #e10808; border-radius: 4px; color: white; transition: all 0.2s; text-decoration: none}
+.thongtin-area { height: 200px; width: 350px}
+.text-box { width: 350px}
+.anh-chitiet { height: 300px; width: 500px; margin: 10px 0}
+/*QLcasi*/
+.tencs { width: 200px}
+.hinhcs { width: 200px; height: 200px}
+.quocgiacs { width: 120px}
+.anhcs-chitiet { height: 300px; width: 300px}
+.chitietcs { width: 120px; height: 50px}
+/*QLBaihat*/
+.casi{width:5%}
+.link{width:5%}
+.tablebaihat { margin-top: 15px; font-size:13px}
+.tablebaihat td,.tablebaihat th { text-align: center; border-bottom: 1px solid gray; padding: 5px 3px}
+h2.action { color: white; background: #c80505; padding: 10px 15px; margin: 0; box-shadow: 0 5px 0 rgba(0,0,0,0.2); position: fixed; width: 100%; z-index: 99}
+.noidung { margin-top: 70px}
+.tenbaihat { width: 14%}
+.luotlike { width: 12%}
+.theloai{width:10%}
+.lyric { width: 7%}
+.luotnghe { width: 10%}
+.tuychon { width: 12%}
+.drop { width: 350px; height: 30px}
+.cre-btn { color: white; padding: 6px 10px; border-radius: 4px; background: #e10808}
+.cre-btn:hover { text-decoration: none; background: #c80505; color: white}
+.opt-btn { color: black; font-size: 16px; font-weight: bold; padding: 4px}
+.opt-btn:hover { background: #e10808; border-radius: 4px; color: white; transition: all 0.2s; text-decoration: none}
+.thongtin-area { height: 200px; width: 350px}
+.text-box { width: 350px}
+.album{width:10%}
+.user{width:10%}

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebNgheNhac.Models.Album>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Quản lí album</h2>
+<div class="container noidung">
+    @using (Html.BeginForm("Index", "QLAlbum", FormMethod.Get))
+    {
+        <p>
+            <label>Lọc theo tên album:</label> @Html.TextBox("tukhoa")
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-filter"></span></button>
+            <a href="@Url.Action("Create","QLAlbum")" class="cre-btn"><span class="glyphicon glyphicon-plus"></span>Thêm album</a>
+        </p>
+    }
+    <table class="tableab">
+        <tr>
+            <th>Tên Album</th>
+            <th>Ảnh Bìa</th>
+            <th>Ngày Phát Hành</th>
+            <th>Lượt Nghe</th>
+            <th>Thể Loại</th>
+            <th>Ca Sĩ</th>
+            <th>Tùy Chọn</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="tenab">@Html.DisplayFor(mitem => item.TEN_AB)</td>
+                <td><img src="@item.ANH_AB" alt="Ảnh bìa" width="50" height="50" /></td>
+                <td class="nph">@Html.DisplayFor(mitem => item.NGAYPHATHANH)</td>
+                <td class="lnab">@Html.DisplayFor(mitem => item.LUOTNGHE)</td>
+                <td class="tl">@Html.DisplayFor(mitem => item.TEN_TL)</td>
+                <td class="tencasi">@Html.DisplayFor(mitem => item.TEN_CS)</td>
+                <td class="tuychon">
+                    <a href="@Url.Action("Detail", new { id = item.MA_AB})" class="opt-btn"><span class="glyphicon glyphicon-zoom-in"></span></a> |
+                    <a href="@Url.Action("Edit", new { id = item.MA_AB})" class="opt-btn"><span class="glyphicon glyphicon-wrench"></span></a> |
+                    <a href="@Url.Action("Delete", new { id = item.MA_AB})" class="opt-btn"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

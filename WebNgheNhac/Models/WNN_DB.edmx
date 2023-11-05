@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebNNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALBUM">
+          <Key>
+            <PropertyRef Name="MA_AB" />
+          </Key>
+          <Property Name="MA_AB" Type="int" Nullable="false" />
+          <Property Name="TEN_AB" Type="nvarchar" MaxLength="255" />
+          <Property Name="ANH_AB" Type="text" />
+          <Property Name="NGAYPHATHANH" Type="date" />
+          <Property Name="LUOTNGHE" Type="int" />
+          <Property Name="THONGTIN" Type="nvarchar(max)" />
+          <Property Name="MA_TL" Type="int" />
+          <Property Name="MA_CS" Type="int" />
+        </EntityType>
+        <EntityType Name="BAIHAT">
+          <Key>
+            <PropertyRef Name="MA_BH" />
+          </Key>
+          <Property Name="MA_BH" Type="int" Nullable="false" />
+          <Property Name="TEN_BH" Type="nvarchar" MaxLength="255" />
+          <Property Name="LINK" Type="nvarchar" MaxLength="500" />
+          <Property Name="LYRIC" Type="nvarchar(max)" />
+          <Property Name="LUOTNGHE" Type="int" />
+          <Property Name="LUOTLIKE" Type="int" />
+          <Property Name="MA_CS" Type="int" />
+          <Property Name="ID" Type="int" />
+          <Property Name="MA_TL" Type="int" />
+          <Property Name="MA_AB" Type="int" />
+          <Property Name="AnhBaiHat" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CASI">
+          <Key>
+            <PropertyRef Name="MA_CS" />
+          </Key>
+          <Property Name="MA_CS" Type="int" Nullable="false" />
+          <Property Name="TEN_CS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ANH_CS" Type="nvarchar" MaxLength="255" />
+          <Property Name="THONGTIN_CS" Type="nvarchar(max)" />
+          <Property Name="QUOCGIA" Type="int" />
+        </EntityType>
+        <EntityType Name="QUOCGIA">
+          <Key>
+            <PropertyRef Name="MA_QG" />
+          </Key>
+          <Property Name="MA_QG" Type="int" Nullable="false" />
+          <Property Name="TEN_QG" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="ID_LV" />
+          </Key>
+          <Property Name="ID_LV" Type="int" Nullable="false" />
+          <Property Name="LEVEL" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="MA_TL" />
+          </Key>
+          <Property Name="MA_TL" Type="int" Nullable="false" />
+          <Property Name="TEN_TL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASS" Type="varchar" MaxLength="50" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="QUYEN" Type="int" />
+        </EntityType>
+        <Association Name="FK__ALBUM__CASITH__4AB81AF0">
+          <End Role="CASI" Type="Self.CASI" Multiplicity="0..1" />
+          <End Role="ALBUM" Type="Self.ALBUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASI">
+              <PropertyRef Name="MA_CS" />
+            </Principal>
+            <Dependent Role="ALBUM">
+              <PropertyRef Name="MA_CS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ALBUM__THELOAI__49C3F6B7">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="ALBUM" Type="Self.ALBUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="MA_TL" />
+            </Principal>
+            <Dependent Role="ALBUM">
+              <PropertyRef Name="MA_TL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__CASI__5CD6CB2B">
+          <End Role="CASI" Type="Self.CASI" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASI">
+              <PropertyRef Name="MA_CS" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="MA_CS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__THELOAI__5EBF139D">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="MA_TL" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="MA_TL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__USER_UPL__5DCAEF64">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CASI__QUOCGIA__1920BF5C">
+          <End Role="QUOCGIA" Type="Self.QUOCGIA" Multiplicity="0..1" />
+          <End Role="CASI" Type="Self.CASI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUOCGIA">
+              <PropertyRef Name="MA_QG" />
+            </Principal>
+            <Dependent Role="CASI">
+              <PropertyRef Name="QUOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__QUYEN__6FE99F9F">
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYEN">
+              <PropertyRef Name="ID_LV" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="QUYEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebNNModelStoreContainer">
+          <EntitySet Name="ALBUM" EntityType="Self.ALBUM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BAIHAT" EntityType="Self.BAIHAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CASI" EntityType="Self.CASI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUOCGIA" EntityType="Self.QUOCGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THELOAI" EntityType="Self.THELOAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ALBUM__CASITH__4AB81AF0" Association="Self.FK__ALBUM__CASITH__4AB81AF0">
+            <End Role="CASI" EntitySet="CASI" />
+            <End Role="ALBUM" EntitySet="ALBUM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ALBUM__THELOAI__49C3F6B7" Association="Self.FK__ALBUM__THELOAI__49C3F6B7">
+            <End Role="THELOAI" EntitySet="THELOAI" />
+            <End Role="ALBUM" EntitySet="ALBUM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__CASI__5CD6CB2B" Association="Self.FK__BAIHAT__CASI__5CD6CB2B">
+            <End Role="CASI" EntitySet="CASI" />
+            <End Role="BAIHAT" EntitySet="BAIHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__THELOAI__5EBF139D" Association="Self.FK__BAIHAT__THELOAI__5EBF139D">
+            <End Role="THELOAI" EntitySet="THELOAI" />
+            <End Role="BAIHAT" EntitySet="BAIHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__USER_UPL__5DCAEF64" Association="Self.FK__BAIHAT__USER_UPL__5DCAEF64">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BAIHAT" EntitySet="BAIHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CASI__QUOCGIA__1920BF5C" Association="Self.FK__CASI__QUOCGIA__1920BF5C">
+            <End Role="QUOCGIA" EntitySet="QUOCGIA" />
+            <End Role="CASI" EntitySet="CASI" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__QUYEN__6FE99F9F" Association="Self.FK__USERS__QUYEN__6FE99F9F">
+            <End Role="QUYEN" EntitySet="QUYEN" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebNNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ALBUM">
+          <Key>
+            <PropertyRef Name="MA_AB" />
+          </Key>
+          <Property Name="MA_AB" Type="Int32" Nullable="false" />
+          <Property Name="TEN_AB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ANH_AB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYPHATHANH" Type="DateTime" Precision="0" />
+          <Property Name="LUOTNGHE" Type="Int32" />
+          <Property Name="THONGTIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MA_TL" Type="Int32" />
+          <Property Name="MA_CS" Type="Int32" />
+          <NavigationProperty Name="CASI" Relationship="Self.FK__ALBUM__CASITH__4AB81AF0" FromRole="ALBUM" ToRole="CASI" />
+          <NavigationProperty Name="THELOAI" Relationship="Self.FK__ALBUM__THELOAI__49C3F6B7" FromRole="ALBUM" ToRole="THELOAI" />
+        </EntityType>
+        <EntityType Name="BAIHAT">
+          <Key>
+            <PropertyRef Name="MA_BH" />
+          </Key>
+          <Property Name="MA_BH" Type="Int32" Nullable="false" />
+          <Property Name="TEN_BH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LINK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LYRIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LUOTNGHE" Type="Int32" />
+          <Property Name="LUOTLIKE" Type="Int32" />
+          <Property Name="MA_CS" Type="Int32" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="MA_TL" Type="Int32" />
+          <Property Name="MA_AB" Type="Int32" />
+          <Property Name="AnhBaiHat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CASI" Relationship="Self.FK__BAIHAT__CASI__5CD6CB2B" FromRole="BAIHAT" ToRole="CASI" />
+          <NavigationProperty Name="THELOAI" Relationship="Self.FK__BAIHAT__THELOAI__5EBF139D" FromRole="BAIHAT" ToRole="THELOAI" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__BAIHAT__USER_UPL__5DCAEF64" FromRole="BAIHAT" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="CASI">
+          <Key>
+            <PropertyRef Name="MA_CS" />
+          </Key>
+          <Property Name="MA_CS" Type="Int32" Nullable="false" />
+          <Property Name="TEN_CS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ANH_CS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="THONGTIN_CS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCGIA" Type="Int32" />
+          <NavigationProperty Name="ALBUMs" Relationship="Self.FK__ALBUM__CASITH__4AB81AF0" FromRole="CASI" ToRole="ALBUM" />
+          <NavigationProperty Name="BAIHATs" Relationship="Self.FK__BAIHAT__CASI__5CD6CB2B" FromRole="CASI" ToRole="BAIHAT" />
+          <NavigationProperty Name="QUOCGIA1" Relationship="Self.FK__CASI__QUOCGIA__1920BF5C" FromRole="CASI" ToRole="QUOCGIA" />
+        </EntityType>
+        <EntityType Name="QUOCGIA">
+          <Key>
+            <PropertyRef Name="MA_QG" />
+          </Key>
+          <Property Name="MA_QG" Type="Int32" Nullable="false" />
+          <Property Name="TEN_QG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CASIs" Relationship="Self.FK__CASI__QUOCGIA__1920BF5C" FromRole="QUOCGIA" ToRole="CASI" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="ID_LV" />
+          </Key>
+          <Property Name="ID_LV" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__QUYEN__6FE99F9F" FromRole="QUYEN" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="MA_TL" />
+          </Key>
+          <Property Name="MA_TL" Type="Int32" Nullable="false" />
+          <Property Name="TEN_TL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ALBUMs" Relationship="Self.FK__ALBUM__THELOAI__49C3F6B7" FromRole="THELOAI" ToRole="ALBUM" />
+          <NavigationProperty Name="BAIHATs" Relationship="Self.FK__BAIHAT__THELOAI__5EBF139D" FromRole="THELOAI" ToRole="BAIHAT" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="QUYEN" Type="Int32" />
+          <NavigationProperty Name="BAIHATs" Relationship="Self.FK__BAIHAT__USER_UPL__5DCAEF64" FromRole="USERS" ToRole="BAIHAT" />
+          <NavigationProperty Name="QUYEN1" Relationship="Self.FK__USERS__QUYEN__6FE99F9F" FromRole="USERS" ToRole="QUYEN" />
+        </EntityType>
+        <Association Name="FK__ALBUM__CASITH__4AB81AF0">
+          <End Role="CASI" Type="Self.CASI" Multiplicity="0..1" />
+          <End Role="ALBUM" Type="Self.ALBUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASI">
+              <PropertyRef Name="MA_CS" />
+            </Principal>
+            <Dependent Role="ALBUM">
+              <PropertyRef Name="MA_CS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ALBUM__THELOAI__49C3F6B7">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="ALBUM" Type="Self.ALBUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="MA_TL" />
+            </Principal>
+            <Dependent Role="ALBUM">
+              <PropertyRef Name="MA_TL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__CASI__5CD6CB2B">
+          <End Role="CASI" Type="Self.CASI" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CASI">
+              <PropertyRef Name="MA_CS" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="MA_CS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__THELOAI__5EBF139D">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="MA_TL" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="MA_TL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BAIHAT__USER_UPL__5DCAEF64">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="BAIHAT" Type="Self.BAIHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BAIHAT">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CASI__QUOCGIA__1920BF5C">
+          <End Role="QUOCGIA" Type="Self.QUOCGIA" Multiplicity="0..1" />
+          <End Role="CASI" Type="Self.CASI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUOCGIA">
+              <PropertyRef Name="MA_QG" />
+            </Principal>
+            <Dependent Role="CASI">
+              <PropertyRef Name="QUOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__QUYEN__6FE99F9F">
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYEN">
+              <PropertyRef Name="ID_LV" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="QUYEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebNNEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ALBUMs" EntityType="Self.ALBUM" />
+          <EntitySet Name="BAIHATs" EntityType="Self.BAIHAT" />
+          <EntitySet Name="CASIs" EntityType="Self.CASI" />
+          <EntitySet Name="QUOCGIAs" EntityType="Self.QUOCGIA" />
+          <EntitySet Name="QUYENs" EntityType="Self.QUYEN" />
+          <EntitySet Name="THELOAIs" EntityType="Self.THELOAI" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK__ALBUM__CASITH__4AB81AF0" Association="Self.FK__ALBUM__CASITH__4AB81AF0">
+            <End Role="CASI" EntitySet="CASIs" />
+            <End Role="ALBUM" EntitySet="ALBUMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ALBUM__THELOAI__49C3F6B7" Association="Self.FK__ALBUM__THELOAI__49C3F6B7">
+            <End Role="THELOAI" EntitySet="THELOAIs" />
+            <End Role="ALBUM" EntitySet="ALBUMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__CASI__5CD6CB2B" Association="Self.FK__BAIHAT__CASI__5CD6CB2B">
+            <End Role="CASI" EntitySet="CASIs" />
+            <End Role="BAIHAT" EntitySet="BAIHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__THELOAI__5EBF139D" Association="Self.FK__BAIHAT__THELOAI__5EBF139D">
+            <End Role="THELOAI" EntitySet="THELOAIs" />
+            <End Role="BAIHAT" EntitySet="BAIHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BAIHAT__USER_UPL__5DCAEF64" Association="Self.FK__BAIHAT__USER_UPL__5DCAEF64">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BAIHAT" EntitySet="BAIHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CASI__QUOCGIA__1920BF5C" Association="Self.FK__CASI__QUOCGIA__1920BF5C">
+            <End Role="QUOCGIA" EntitySet="QUOCGIAs" />
+            <End Role="CASI" EntitySet="CASIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__QUYEN__6FE99F9F" Association="Self.FK__USERS__QUYEN__6FE99F9F">
+            <End Role="QUYEN" EntitySet="QUYENs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebNNModelStoreContainer" CdmEntityContainer="WebNNEntities">
+          <EntitySetMapping Name="ALBUMs">
+            <EntityTypeMapping TypeName="WebNNModel.ALBUM">
+              <MappingFragment StoreEntitySet="ALBUM">
+                <ScalarProperty Name="MA_AB" ColumnName="MA_AB" />
+                <ScalarProperty Name="TEN_AB" ColumnName="TEN_AB" />
+                <ScalarProperty Name="ANH_AB" ColumnName="ANH_AB" />
+                <ScalarProperty Name="NGAYPHATHANH" ColumnName="NGAYPHATHANH" />
+                <ScalarProperty Name="LUOTNGHE" ColumnName="LUOTNGHE" />
+                <ScalarProperty Name="THONGTIN" ColumnName="THONGTIN" />
+                <ScalarProperty Name="MA_TL" ColumnName="MA_TL" />
+                <ScalarProperty Name="MA_CS" ColumnName="MA_CS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BAIHATs">
+            <EntityTypeMapping TypeName="WebNNModel.BAIHAT">
+              <MappingFragment StoreEntitySet="BAIHAT">
+                <ScalarProperty Name="MA_BH" ColumnName="MA_BH" />
+                <ScalarProperty Name="TEN_BH" ColumnName="TEN_BH" />
+                <ScalarProperty Name="LINK" ColumnName="LINK" />
+                <ScalarProperty Name="LYRIC" ColumnName="LYRIC" />
+                <ScalarProperty Name="LUOTNGHE" ColumnName="LUOTNGHE" />
+                <ScalarProperty Name="LUOTLIKE" ColumnName="LUOTLIKE" />
+                <ScalarProperty Name="MA_CS" ColumnName="MA_CS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MA_TL" ColumnName="MA_TL" />
+                <ScalarProperty Name="MA_AB" ColumnName="MA_AB" />
+                <ScalarProperty Name="AnhBaiHat" ColumnName="AnhBaiHat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CASIs">
+            <EntityTypeMapping TypeName="WebNNModel.CASI">
+              <MappingFragment StoreEntitySet="CASI">
+                <ScalarProperty Name="MA_CS" ColumnName="MA_CS" />
+                <ScalarProperty Name="TEN_CS" ColumnName="TEN_CS" />
+                <ScalarProperty Name="ANH_CS" ColumnName="ANH_CS" />
+                <ScalarProperty Name="THONGTIN_CS" ColumnName="THONGTIN_CS" />
+                <ScalarProperty Name="QUOCGIA" ColumnName="QUOCGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUOCGIAs">
+            <EntityTypeMapping TypeName="WebNNModel.QUOCGIA">
+              <MappingFragment StoreEntitySet="QUOCGIA">
+                <ScalarProperty Name="MA_QG" ColumnName="MA_QG" />
+                <ScalarProperty Name="TEN_QG" ColumnName="TEN_QG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENs">
+            <EntityTypeMapping TypeName="WebNNModel.QUYEN">
+              <MappingFragment StoreEntitySet="QUYEN">
+                <ScalarProperty Name="ID_LV" ColumnName="ID_LV" />
+                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THELOAIs">
+            <EntityTypeMapping TypeName="WebNNModel.THELOAI">
+              <MappingFragment StoreEntitySet="THELOAI">
+                <ScalarProperty Name="MA_TL" ColumnName="MA_TL" />
+                <ScalarProperty Name="TEN_TL" ColumnName="TEN_TL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="WebNNModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="QUYEN" ColumnName="QUYEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,55 @@
+﻿@model WebNgheNhac.Models.CASI
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Bạn có chắc chắn muốn xóa ca sĩ này không ?</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Tên ca sĩ
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TEN_CS)
+            </dd>
+
+            <dt>
+                Ảnh ca sĩ
+            </dt>
+
+            <dd>
+                <img src="@ViewBag.anh" alt="anhcs" class="hinhcs" />
+            </dd>
+
+            <dt>
+                Thông tin
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THONGTIN_CS)
+            </dd>
+
+            <dt>
+                Quốc gia
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.QUOCGIA)
+            </dd>
+        </dl>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
+            </div>
+        }
+    </div>
+
+</div>
+

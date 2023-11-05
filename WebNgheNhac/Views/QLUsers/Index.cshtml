@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="action">Quản lí Người dùng</h2>
+<div class="container noidung">
+    <p>      
+        @using (Html.BeginForm("Search", "QLUsers", FormMethod.Post))
+        {
+            <label>Lọc theo tên User:</label>
+            <input type="text" name="keyword" />
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-filter"></span></button>
+        }
+    </p>
+
+    <table class="tableab">
+        <tr>
+            <th>Username</th>
+            <th>Họ Tên</th>
+            <th>Ngày sinh</th>
+            <th>Quyền</th>
+            <th>Tùy chọn</th>
+        </tr>
+
+        @Html.Raw(ViewBag.Manager)
+
+    </table>
+    <hr />
+    <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a>
+</div>
+

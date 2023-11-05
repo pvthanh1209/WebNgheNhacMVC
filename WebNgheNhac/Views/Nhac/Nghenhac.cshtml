@@ -1,0 +1,34 @@
+﻿@model WebNgheNhac.Models.BaiHatDetail
+@{
+    ViewBag.Title = "Nghe nhạc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (Model != null)
+    {
+        var image = (!string.IsNullOrEmpty(Model.AnhBaiHat) ? Model.AnhBaiHat : "/Assets/images/iconphone.png");
+        <div class="box-thongtinbh">
+            <h3>@Model.TEN_BH <span class="label label-danger">@Model.Hot</span></h3>
+            <p>Ca sĩ: <a class="thongtin" href="/Nhac/Casi/@Model.MA_CS">@Model.TenCS</a></p>
+            <p>Album: <a class="thongtin" href="/Nhac/Nghealbum/@Model.MA_AB">@Model.TenAlbum</a></p>
+            <p>Thể loại: <span class="ttchitiet">@Model.TenTL</span></p>
+            <p>Lượt nghe: <span class="ttchitiet">@Model.LUOTNGHE</span></p>
+            @*<p>Lượt thích: <span class="ttchitiet">@Model.LUOTLIKE</span></p>*@
+            @*<a class="down-like-btn" title="@Model.LUOTLIKE Lượt thích" href="/Nhac/Thichbaihat/@Model.MA_BH"><span class="glyphicon glyphicon-heart"></span> Thích</a>*@
+            <a class="down-like-btn" href="javascript:void(0)" title="Lời bài hát" id="xemlyric"><span class="glyphicon glyphicon-music"></span> Lời bài hát</a><br>
+            <textarea disabled id="lyric">Lời bài hát: @Model.TEN_BH
+                @Model.Lyrics
+            </textarea>
+        </div>
+        <video controls autoplay loop poster="@image">
+            <source src="@Model.LINK" />
+        </video>
+    }
+    else
+    {
+        <p>Đang cập nhật...</p>
+    }
+
+</div>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d1f86555266d46c28c8f4b5482f23952" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNNModel.ALBUM" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.BAIHAT" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.CASI" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.QUOCGIA" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.QUYEN" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.THELOAI" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNNModel.USER" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="WebNNModel.FK__ALBUM__CASITH__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__ALBUM__THELOAI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__BAIHAT__CASI__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__BAIHAT__THELOAI__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__BAIHAT__USER_UPL__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__CASI__QUOCGIA__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNNModel.FK__USERS__QUYEN__6FE99F9F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

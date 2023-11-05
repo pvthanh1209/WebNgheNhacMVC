@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="action">Chi Tiết Ca Sĩ</h2>
+<div class="container noidung">
+    <table>
+        <tr class="chitietcs">
+            <th class="chitietcs">Tên ca sĩ</th>
+            <td>@ViewBag.TEN</td>
+        </tr>
+        <tr class="chitietcs">
+            <th>Ảnh ca sĩ</th>
+            <td><img src="@ViewBag.IMG" alt="hinhcs" class="anhcs-chitiet" /></td>
+        </tr>
+        <tr class="chitietcs">
+            <th>Thông tin</th>
+            <td>@ViewBag.Thongtin</td>
+        <tr>
+        <tr class="chitietcs">
+            <th>Quốc gia</th>
+            <td>@ViewBag.Quocgia</td>
+        </tr>
+    </table>
+    <p><a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <a href="/QLCasi/Edit/@ViewBag.id" class="opt-btn">Chỉnh sửa <span class="glyphicon glyphicon-wrench"></span></a></p>
+</div>
+

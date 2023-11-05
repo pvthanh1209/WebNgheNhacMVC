@@ -1,0 +1,63 @@
+﻿@model WebNgheNhac.Models.ALBUM
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Chi Tiết Album</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.MA_AB)
+
+            <dt>
+                Tên album
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TEN_AB)
+            </dd>
+
+            <dt>
+                Ảnh bìa
+            </dt>
+
+            <dd>
+                <img class="anh-chitiet" src="@ViewBag.anh" alt="anh" />
+            </dd>
+            <dt>
+                Ngày phát hành
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NGAYPHATHANH)
+            </dd>
+            <dt>
+                Lượt nghe
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LUOTNGHE)
+            </dd>
+            <dt>
+                Thông tin
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.THONGTIN)
+            </dd>
+            <dt>
+                Thể loại
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.THELOAI.TEN_TL)
+            </dd>
+            <dt>
+                Ca sĩ thể hiện
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CASI.TEN_CS)
+            </dd>
+        </dl>
+        <hr />
+    </div>
+    <p><a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <a href="@Url.Action("Edit", new { id = Model.MA_AB})" class="opt-btn"><span class="glyphicon glyphicon-wrench"></span> Chỉnh sửa</a></p>
+</div>
+

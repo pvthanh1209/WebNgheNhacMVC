@@ -1,0 +1,52 @@
+﻿@model WebNgheNhac.Models.CASI
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Chỉnh sửa ca sĩ</h2>
+<div class="container noidung">
+    @using (Html.BeginForm("Edit", "QLCasi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.MA_CS)
+            @Html.HiddenFor(model => model.ANH_CS)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TEN_CS, "Tên ca sĩ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TEN_CS)
+                    @Html.ValidationMessageFor(model => model.TEN_CS)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.THONGTIN_CS, "Thông tin: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.THONGTIN_CS, new { @class = "thongtin-area" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QUOCGIA, "Quốc Gia: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("QUOCGIA", null, htmlAttributes: new { @class = "drop" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a>
+</div>
+

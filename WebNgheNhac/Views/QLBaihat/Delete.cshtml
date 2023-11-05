@@ -1,0 +1,95 @@
+﻿@model WebNgheNhac.Models.BAIHAT
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="action">Bạn có chắc chắn muốn xóa bài hát này không ?</h2>
+<div class="container noidung">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Tên Bài Hát
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TEN_BH)
+            </dd>
+
+            <dt>
+                Ca Sĩ
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CASI.TEN_CS)
+            </dd>
+
+            <dt>
+                Link
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LINK)
+            </dd>
+
+            <dt>
+                Lyric
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LYRIC)
+            </dd>
+
+            <dt>
+                Lượt Nghe
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUOTNGHE)
+            </dd>
+
+            <dt>
+                Lượt Like
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUOTLIKE)
+            </dd>
+
+            <dt>
+                Người Upload
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.USER.USERNAME)
+            </dd>
+
+            <dt>
+                Thể Loại
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THELOAI.TEN_TL)
+            </dd>
+
+            <dt>
+                Album
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MA_AB)
+            </dd>
+        </dl>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="opt-btn"><span class="glyphicon glyphicon-arrow-left"></span> Quay lại</a> | <button type="submit" class="btn btn-danger" onclick="alert('Bài Hát Xóa Thành Công')"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
+            </div>
+        }
+    </div>
+
+</div>
+
