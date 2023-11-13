@@ -11,12 +11,14 @@ namespace WebNgheNhac.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ALBUM
     {
         public int MA_AB { get; set; }
         public string TEN_AB { get; set; }
         public string ANH_AB { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> NGAYPHATHANH { get; set; }
         public Nullable<int> LUOTNGHE { get; set; }
         public string THONGTIN { get; set; }
